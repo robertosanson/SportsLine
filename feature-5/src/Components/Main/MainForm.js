@@ -39,6 +39,9 @@ const MainForm = ({ items }) => {
         alt={item.get("vendor").get("name")}
         width="100"
       />
+      {console.log(window.location.origin +
+          "/pictures/logos/" +
+          item.get("vendor").get("logo"))}
     </div>
   ));
 

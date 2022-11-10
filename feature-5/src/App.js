@@ -1,11 +1,12 @@
-// import logo from './logo.svg';
+
 import './App.css';
 import * as Env from "./environments";
 import Parse from "parse";
 import Components from "./Components/Components.js";
 
 
-Parse.initialize(Env.SERVER_URL,Env.APPLICATION_ID, Env.JAVASCRIPT_KEY);
+Parse.initialize(Env.APPLICATION_ID, Env.JAVASCRIPT_KEY);
+Parse.serverURL = Env.SERVER_URL;
 
 function App() {
   return <Components />;
