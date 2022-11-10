@@ -4,7 +4,10 @@ const Navigation = () => (
   <nav>
     <ul>
       <hr />
-      <Link to="/">Home</Link>
+      <Link to="/loginPage">Login</Link>
+      <br />
+      <hr />
+      <Link to="/home">Home</Link>
       <br />
       <hr />
       <Link to="/inventory">Inventory</Link>

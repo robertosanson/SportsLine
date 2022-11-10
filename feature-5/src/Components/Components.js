@@ -2,12 +2,15 @@ import Navigation from "./Navigation/Navigation.js";
 import Home from "./Home/Home.js";
 import About from "./About/About";
 import Inventory from "./Inventory/Inventory.js";
+import LoginPage from "./Login/LoginPage";
+import Login from "./Login/Login";
+import LoginAuth from "./Login/LoginAuth";
 
 import {
   BrowserRouter as Router,
   Route,
-  Switch,
-  Redirect
+  Routes,
+  Navigate
 } from "react-router-dom";
 
 const Components = () => {
@@ -15,12 +18,15 @@ const Components = () => {
     <div>
       <Router>
         <Navigation />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/inventory" component={Inventory} />
-          <Route path="/about" component={About} />
-          <Redirect to="/" />
-        </Switch>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/loginAuth" element={<LoginAuth />} />
+          <Route path="/loginPage" element={<LoginPage />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/about" element={<About />} />
+          <Route path="*" element={<Navigate to="/loginPage" replace />} />
+        </Routes>
       </Router>
     </div>
   );
