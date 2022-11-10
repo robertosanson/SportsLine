@@ -1,16 +1,21 @@
 import { Link } from "react-router-dom";
+import {checkUser} from "../Authentication/AuthService";
 
+//New navigation with log in functionality
 const Navigation = () => (
   <nav>
     <ul>
       <hr />
-      <Link to="/loginPage">Login</Link>
-      <br />
+      {!checkUser() ? 
+      <Link to="/auth">Sign Up / Log In</Link> : 
+      <Link to="/home">Sign Up / Log In</Link>
+      }
+      <br/>
       <hr />
       <Link to="/home">Home</Link>
       <br />
       <hr />
-      <Link to="/inventory">Inventory</Link>
+      <Link to="/inventory"> Inventory </Link>
       <br />
       <hr />
       <Link to="/about">About</Link>

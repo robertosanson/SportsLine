@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ProtectedRoute from "../../Common/ProtectedRoutes.js";
 import LoginAuth from "./LoginAuth.js";
+import {checkUser} from "./AuthService";
 
 const MainHome = () => {
   const [flag, setFlag] = useState(false);
 
-  var check = document.getElementById("flagBox");
+  var check = checkUser();
 
   useEffect(() => {
     if (check && check.checked) {

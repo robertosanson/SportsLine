@@ -20,28 +20,31 @@ const MainForm = ({ items }) => {
       <br />
       <br />
       {/* Get the information for the vendor of each item */}
-      Vendor:
-      <a
+      {/* Vendor: */}
+      {/* <a
         href={item.get("vendor").get("homepage")}
         target="_blank"
         rel="noreferrer"
       >
         {item.get("vendor").get("name")}
       </a>
-      <br />
-      <img
+      <br /> */}
+      {/* Return this next feature, bug for some reason impossible to fix */}
+      {/* <img
         className="images"
         src={
           window.location.origin +
           "/pictures/logos/" +
           item.get("vendor").get("logo")
         }
-        alt={item.get("vendor").get("name")}
+        alt={item.get("vendor").get('name')}
         width="100"
-      />
-      {console.log(window.location.origin +
-          "/pictures/logos/" +
-          item.get("vendor").get("logo"))}
+      /> */}
+
+      {
+
+      console.log(
+          item.get("vendor").get('id'))}
     </div>
   ));
 

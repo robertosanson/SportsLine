@@ -1,25 +1,26 @@
 import React from "react";
 import { Navigate, useNavigate } from "react-router-dom";
+import {checkUser} from "../Components/Authentication/AuthService"
 
-const ProtectedRoute = ({ element: Component, flag, rest }) => {
+const ProtectedRoute = ({ element: Component, flag, ...rest }) => {
   const navigate = useNavigate();
   const goBackHandler = () => {
-    navigate(-1);
+    navigate("/auth");
   };
   console.log("rest: ", rest);
-
-  // hint: you can swp out the Navigate redirect for the Component
-  // <Component />
-
+  if (checkUser()){
+    return <Component />;
+  }else {
   return (
     <div>
-      {flag ? (<Navigate to="/loginAuth" replace />) : (
+      {flag ? (<Navigate to={rest.path} replace />) : (
         <div>
-          <p>Unauthorized!</p> <button onClick={goBackHandler}>Go Back.</button>
+          <p>Unauthorized!</p> <button onClick={goBackHandler}>Log In</button>
         </div>
       )}
     </div>
   );
+  }
 };
 
 export default ProtectedRoute;

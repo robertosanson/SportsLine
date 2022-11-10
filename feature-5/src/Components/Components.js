@@ -2,9 +2,12 @@ import Navigation from "./Navigation/Navigation.js";
 import Home from "./Home/Home.js";
 import About from "./About/About";
 import Inventory from "./Inventory/Inventory.js";
-import LoginPage from "./Login/LoginPage";
-import Login from "./Login/Login";
-import LoginAuth from "./Login/LoginAuth";
+import Auth from "./Authentication/Auth";
+import AuthRegister from "./Authentication/AuthRegister";
+import AuthModule from "./Authentication/Auth";
+import AuthLogin from "./Authentication/AuthLogin";
+import ProtectedRoute from "../Common/ProtectedRoutes";
+import LogOut from "./Authentication/Logout";
 
 import {
   BrowserRouter as Router,
@@ -19,13 +22,17 @@ const Components = () => {
       <Router>
         <Navigation />
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/loginAuth" element={<LoginAuth />} />
-          <Route path="/loginPage" element={<LoginPage />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/auth" element={<AuthModule />} />
+          <Route path="/logOut" element={<LogOut />} />
+          <Route path="/auth/register" element={<AuthRegister />} />
+          <Route path="/auth/login" element={<AuthLogin />} />
           <Route path="/about" element={<About />} />
-          <Route path="*" element={<Navigate to="/loginPage" replace />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/authRegister" element={<AuthRegister />} />
+          <Route path="/inventory" element={<ProtectedRoute path="/" element={Inventory} />}/>
+          {/* Protecting the Inventory which is the only protected route */}
+          <Route path="*" element={<Navigate to="/home" replace />} />
         </Routes>
       </Router>
     </div>
