@@ -10,17 +10,23 @@ const ProtectedRoute = ({ element: Component, flag, ...rest }) => {
   console.log("rest: ", rest);
   if (checkUser()){
     return <Component />;
-  }else {
-  return (
-    <div>
-      {flag ? (<Navigate to={rest.path} replace />) : (
-        <div>
-          <p>Unauthorized!</p> <button onClick={goBackHandler}>Log In</button>
-        </div>
-      )}
-    </div>
-  );
   }
+  // }
+  // else{
+  //   navigate("/auth");
+  // }
+  
+  // else {
+  // return (
+  //   <div>
+  //     {flag ? (<Navigate to={rest.path} replace />) : (
+  //       <div>
+  //         <p>Unauthorized!</p> <button onClick={goBackHandler}>Log In</button>
+  //       </div>
+  //     )}
+  //   </div>
+  // );
+  // }
 };
 
 export default ProtectedRoute;

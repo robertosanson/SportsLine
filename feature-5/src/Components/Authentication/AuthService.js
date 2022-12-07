@@ -44,6 +44,6 @@ export const checkUser = () => {
   return Parse.User.current()?.authenticated;
 };
 
-export const logoutUser = (currUser) => {
-    return Parse.User.current().logOut();
+export const logoutUser = () => {
+    return Parse.User.logOut();
 }

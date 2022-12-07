@@ -2,12 +2,19 @@ body {
     font-family: "Montserrat", sans-serif;
     text-align: center;
     color: red;
+    
   }
   
   .item {
     text-align: center;
     color: black;
-    border: 1px solid black;
     padding: 10px;
+    border-radius: 0px;
+    background: #50b968;
+    box-shadow:  -5px 5px 0px #204a2a,
+                 5px -5px 0px #80ffa6;
   }
   
+h2.Items {
+  color:blue;
+}

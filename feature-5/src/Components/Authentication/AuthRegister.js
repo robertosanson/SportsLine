@@ -22,6 +22,10 @@ const AuthRegister = () => {
       alert("You are already logged in");
       navigate("/home");
     }
+    // else{
+    //   alert("You have to login");
+    //   navigate("/auth");
+    // }
   }, [navigate]);
 
   // useEffect that run when changes are made to the state variable flags

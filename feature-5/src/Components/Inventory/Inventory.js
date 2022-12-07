@@ -1,9 +1,10 @@
 import MainModule from "../Main/Main.js";
+import "../../styles.css";
 
 export default function Inventory() {
   return (
     <section>
-      <h2> Items </h2>
+      <h2 className="Items"> Items </h2>
       <p> Inventory Page </p>
       <MainModule />
       <hr />

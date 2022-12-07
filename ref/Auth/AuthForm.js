@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const AuthForm = ({ user, onChange, onSubmit }) => {
   return (
@@ -15,7 +14,7 @@ const AuthForm = ({ user, onChange, onSubmit }) => {
             value={user.firstName}
             onChange={onChange}
             name="firstName"
-            placeholder="First name"
+            placeholder="first name"
             required
           />
         </div>
@@ -29,7 +28,6 @@ const AuthForm = ({ user, onChange, onSubmit }) => {
             value={user.lastName}
             onChange={onChange}
             name="lastName"
-            placeholder="Last name"
             required
           />
         </div>{" "}
@@ -43,7 +41,6 @@ const AuthForm = ({ user, onChange, onSubmit }) => {
             value={user.email}
             onChange={onChange}
             name="email"
-            placeholder="Email"
             required
           />
         </div>{" "}
@@ -57,20 +54,13 @@ const AuthForm = ({ user, onChange, onSubmit }) => {
             value={user.password}
             onChange={onChange}
             name="password"
-            placeholder="Password"
             min="0"
             required
           />
         </div>
         <div className="form-group">
-          <br/>
-          <button type="submit" className="btn btn-primary" onSubmit={onSubmit}> 
-          Submit
-          </button>
-          <br/>
-          <br/>
-          <button> 
-          <Link to="/auth">Go back</Link>
+          <button type="submit" className="btn btn-primary" onSubmit={onSubmit}>
+            Submit
           </button>
         </div>
       </form>
