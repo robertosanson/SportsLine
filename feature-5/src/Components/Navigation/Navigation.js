@@ -8,15 +8,18 @@ const Navigation = () => (
       <hr />
       {!checkUser() ? 
       <Link to="/auth">Sign Up / Log In</Link> : 
-      <Link to="/home">Logout</Link>
-      // <button onclick={logoutUser()}> Log out </button>
+      // <Link to="/home">Logout</Link>
+      <button onClick={() => {logoutUser()}}> Log out </button>
       }
       <br/>
       <hr />
       <Link to="/home">Home</Link>
       <br />
       <hr />
-      <Link to="/inventory"> Inventory </Link>
+      {checkUser() ? 
+      <Link to="/inventory"> Inventory </Link> : 
+      <Link to="/auth"> Inventory </Link> 
+      }
       <br />
       <hr />
       <Link to="/about">About</Link>

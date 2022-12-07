@@ -5,7 +5,6 @@ import { checkUser } from "./AuthService";
 
 const AuthModule = () => {
   const navigate = useNavigate();
-
   // redirect already authenticated users back to home
   useEffect(() => {
     if (checkUser()) {

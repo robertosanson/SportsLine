@@ -1,4 +1,5 @@
 import React from "react";
+import {refresh} from "./AuthService";
 
 const AuthForm = ({ user, isLogin, onChange, onSubmit }) => {
     //The authentication form used to authenticate / register users.

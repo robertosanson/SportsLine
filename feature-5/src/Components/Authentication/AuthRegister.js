@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { checkUser, createUser } from "./AuthService";
 import AuthForm from "./AuthForm";
 import { useNavigate } from "react-router-dom";
+import {refresh} from "./AuthService";
 
 const AuthRegister = () => {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ const AuthRegister = () => {
             `${userCreated.get("firstName")}, you successfully registered!`
           );
           navigate("/home");
+          refresh();
         }
         // TODO: redirect user to main app
         setAdd(false);

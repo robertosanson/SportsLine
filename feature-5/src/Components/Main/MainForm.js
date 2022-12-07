@@ -1,34 +1,11 @@
 import React from "react";
 import "../../styles.css";
-import { loadStripe } from "@stripe/stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
 
 // function that displays the items that are availble, as well as the
 // Vendors that correspond to each item
 const MainForm = ({ items }) => {
 
-  let stripePromise;
-  const getStripe = () => {
-    if (!stripePromise) {
-      stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
-    }
-    return stripePromise;
-  };
-
-  let checkoutOptions = {
-    lineItems: [],
-    mode: "payment",
-    successUrl: `${window.location.origin}/success`,
-    cancelUrl: `${window.location.origin}/cancel`
-    };
-
-  const redirectToCheckout = async (item) => {
-    console.log("redirectToCheckout");
-  
-    const stripe = await getStripe();
-    const { error } = await stripe.redirectToCheckout(checkoutOptions.lineItems.push(item));
-    console.log("Stripe checkout error", error);
-  };
-  let newItem;
   //This are the list items that will be presented to the user
   let listItems = items.map((item) => (
     
@@ -41,7 +18,7 @@ const MainForm = ({ items }) => {
               className="images"
               src={window.location.origin + "/pictures/items/" + item.get("picture")}
               alt={item.name}
-              class="img-thumbnail"
+              className="img-thumbnail"
               width="100"
             />
             <br />

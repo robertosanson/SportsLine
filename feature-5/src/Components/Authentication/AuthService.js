@@ -1,5 +1,7 @@
 import Parse from "parse";
 
+// import { Navigate, useNavigate } from "react-router-dom";
+
 // used in auth register component
 export const createUser = (newUser) => {
   const user = new Parse.User();
@@ -45,5 +47,10 @@ export const checkUser = () => {
 };
 
 export const logoutUser = () => {
+    refresh();
     return Parse.User.logOut();
+}
+
+export const refresh = () => {
+  window.location.reload(false);
 }

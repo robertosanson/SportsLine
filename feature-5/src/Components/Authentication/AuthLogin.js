@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { checkUser, loginUser } from "./AuthService";
 import AuthForm from "./AuthForm";
 import { useNavigate } from "react-router-dom";
+import {refresh} from "./AuthService";
 
 const AuthLogin = () => {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ const AuthLogin = () => {
             `${userLoggedIn.get("firstName")}, you successfully logged in!`
           );
           navigate("/home");
+          refresh();
         }
         // TODO: redirect user to main app
         setAdd(false);
@@ -54,6 +56,7 @@ const AuthLogin = () => {
     e.preventDefault();
     console.log("submitted: ", e.target);
     setAdd(true);
+
   };
 
   return (

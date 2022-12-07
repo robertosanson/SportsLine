@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate, useNavigate } from "react-router-dom";
-import {checkUser} from "../Components/Authentication/AuthService"
+import {checkUser} from "../Components/Authentication/AuthService";
+import Home from "../Components/Home/Home";
 
 const ProtectedRoute = ({ element: Component, flag, ...rest }) => {
   const navigate = useNavigate();
@@ -11,10 +12,9 @@ const ProtectedRoute = ({ element: Component, flag, ...rest }) => {
   if (checkUser()){
     return <Component />;
   }
-  // }
-  // else{
-  //   navigate("/auth");
-  // }
+  else{
+    return <Home />;
+  }
   
   // else {
   // return (
