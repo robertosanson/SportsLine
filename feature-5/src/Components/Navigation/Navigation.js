@@ -1,10 +1,16 @@
 import { Link } from "react-router-dom";
 import {checkUser, logoutUser} from "../Authentication/AuthService";
+import Parse from "parse";
+
 
 //New navigation with log in functionality
 const Navigation = () => (
   <nav>
     <ul>
+      <hr />
+      {checkUser() ? <label> Hello, {Parse.User.current()?.get("firstName")} </label> :
+      <label> Welcome, Please Login or SignUp </label>
+      }
       <hr />
       {!checkUser() ? 
       <Link to="/auth">Sign Up / Log In</Link> : 

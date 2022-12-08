@@ -47,6 +47,7 @@ export const checkUser = () => {
 };
 
 export const logoutUser = () => {
+    localStorage.clear();
     refresh();
     return Parse.User.logOut();
 }
