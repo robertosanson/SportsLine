@@ -130,6 +130,9 @@ const MainForm = ({ items, vendors }) => {
           total -= 1;
           window.localStorage.setItem(stripeId, total);
         }
+        else{
+          alert("Can't remove something you don't have");
+        }
     }
    
 
@@ -153,10 +156,11 @@ const MainForm = ({ items, vendors }) => {
             {item.get("name")} - {item.get("sport")} - ${item.get("price")} <br /> 
             In Cart: {window.localStorage.getItem(item.get("stripeId")) ? window.localStorage.getItem(item.get("stripeId")) : 0}
             <br />
-            <button onClick={() => {redirectToCheckout(item.get("stripeId"))}}>Instant Checkout</button>
-            <button onClick={() => {addToCart(item.get("stripeId"), item.get("quantity"))}}>Add to Cart</button>  
-            <button onClick={() => {removeFromCart(item.get("stripeId"))}}>Remove from Cart</button>  
-
+            <br />
+            <button className="inventoryButtons" onClick={() => {redirectToCheckout(item.get("stripeId"))}}>Instant Checkout</button>
+            <button className="inventoryButtons" onClick={() => {addToCart(item.get("stripeId"), item.get("quantity"))}}>Add to Cart</button>  
+            <button className="inventoryButtons" onClick={() => {removeFromCart(item.get("stripeId"))}}>Remove from Cart</button>  
+            <br />
             {/* Get the information for the vendor of each item */}
             {/* Vendor: */}
             <br/>
@@ -197,10 +201,10 @@ const MainForm = ({ items, vendors }) => {
   return (
     <div>
 
-      <label for="name">Item Name:</label>
+      <label className="filter" for="name">Item Name:</label>
       <input type="text" id="name" name="name" onChange={() => filterItemsByName(document.getElementById("name").value)}></input>
 
-        <label for="sport">Choose a sport: </label>
+        <label className="filter" for="sport">Choose a sport: </label>
         <select
           name="sport"
           id="sport"
@@ -215,7 +219,7 @@ const MainForm = ({ items, vendors }) => {
         </select>
         
 
-        <label for="price">Items Under: </label>
+        <label className="filter" for="price">Items Under: </label>
         <select
           name="price"
           id="price"

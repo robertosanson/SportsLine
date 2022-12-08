@@ -1,8 +1,7 @@
 body {
     font-family: "Montserrat", sans-serif;
     text-align: center;
-    color: red;
-    
+    color: black;
   }
   
   .item {
@@ -16,5 +15,26 @@ body {
   }
   
 h2.Items {
-  color:blue;
+  color:black;
+}
+
+button.inventoryButtons{
+  margin-left: 20px;
+  color: blue;
+  box-shadow: 5px 5px 10px 1px rgba(0,0,0,.5);
+}
+
+label.welcomeTitle{
+  color: black;
+  font-size: 30px;
+}
+
+button.logoutButton{
+  color: red;
+  text-align: left;
+}
+
+label.filter{
+  margin-left: 40px;
+  margin-right: 5px;
 }

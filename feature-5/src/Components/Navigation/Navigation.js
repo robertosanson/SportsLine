@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import {checkUser, logoutUser} from "../Authentication/AuthService";
 import Parse from "parse";
+import "../../styles.css";
 
 
 //New navigation with log in functionality
@@ -8,14 +9,13 @@ const Navigation = () => (
   <nav>
     <ul>
       <hr />
-      {checkUser() ? <label> Hello, {Parse.User.current()?.get("firstName")} </label> :
-      <label> Welcome, Please Login or SignUp </label>
+      {checkUser() ? <label className="welcomeTitle"> Hello, {Parse.User.current()?.get("firstName")} </label> :
+      <label className="welcomeTitle"> Welcome, Please Login or SignUp </label>
       }
       <br/>
       {!checkUser() ? 
       <Link to="/auth">Sign Up / Log In</Link> : 
-      // <Link to="/home">Logout</Link>
-      <button onClick={() => {logoutUser()}}> Log out </button>
+      <button className="logoutButton" onClick={() => {logoutUser()}}> Log out </button>
       }
       <br/>
       <hr />
