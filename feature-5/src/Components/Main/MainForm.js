@@ -5,7 +5,7 @@ import {useState} from "react";
 
 // function that displays the items that are availble, as well as the
 // Vendors that correspond to each item
-const MainForm = ({ items }) => {
+const MainForm = ({ items, vendors }) => {
 
   const [sportFilter, setSportFilter] = useState("All");
   const [priceFilter, setPriceFilter] = useState(100);
@@ -140,37 +140,41 @@ const MainForm = ({ items }) => {
             <br />
             <button onClick={() => {redirectToCheckout(item.get("stripeId"))}}>Instant Checkout</button>
             <button onClick={() => {addToCart(item.get("stripeId"), item.get("quantity"))}}>Add to Cart</button>  
+
+            {/* Get the information for the vendor of each item */}
+            {/* Vendor: */}
+            <br/>
+            <a
+              href={item.get("vendor").get("homepage")}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Item From: {item.get("vendor").get("name")}
+            </a>
+            <br />
+            {/* Return this next feature, bug for some reason impossible to fix */}
+            <img
+              className="images"
+              src={
+                window.location.origin +
+                "/pictures/logos/" +
+                item.get("vendor").get("logo")
+              }
+              alt={item.get("vendor").get('name')}
+              width="100"
+            />
+
           </div>
         </div>
       </div>
 
 
-      {/* Get the information for the vendor of each item */}
-      {/* Vendor: */}
-      {/* <a
-        href={item.get("vendor").get("homepage")}
-        target="_blank"
-        rel="noreferrer"
-      >
-        {item.get("vendor").get("name")}
-      </a>
-      <br /> */}
-      {/* Return this next feature, bug for some reason impossible to fix */}
-      {/* <img
-        className="images"
-        src={
-          window.location.origin +
-          "/pictures/logos/" +
-          item.get("vendor").get("logo")
-        }
-        alt={item.get("vendor").get('name')}
-        width="100"
-      /> */}
+      
 
       {
 
       console.log(
-          item.get("vendor").get('id'))}
+          item.get("vendor"))}
     </div>
   ));
 

@@ -11,7 +11,7 @@ const Navigation = () => (
       {checkUser() ? <label> Hello, {Parse.User.current()?.get("firstName")} </label> :
       <label> Welcome, Please Login or SignUp </label>
       }
-      <hr />
+      <br/>
       {!checkUser() ? 
       <Link to="/auth">Sign Up / Log In</Link> : 
       // <Link to="/home">Logout</Link>
