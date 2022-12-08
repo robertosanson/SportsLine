@@ -116,7 +116,22 @@ const MainForm = ({ items, vendors }) => {
         alert("No more items in stock");
       }
     }
-  } 
+  }
+    const removeFromCart = async (stripeId) => {
+      let index = 0;
+      let newList = [];
+      // Removes an item from que shopping cart
+        total = +(window.localStorage.getItem(stripeId));
+        index = list_stripe.indexOf(stripeId);
+        if (0 < (window.localStorage.getItem(stripeId))){
+          newList = quantityList;
+          setQuantityList(newList + 1);
+          list_quantity[index] += 1;
+          total -= 1;
+          window.localStorage.setItem(stripeId, total);
+        }
+    }
+   
 
   //This are the list items that will be presented to the user
   let listItems = items.filter(item => (item.get("name").toLowerCase().includes(document.getElementById("name").value.toLowerCase()) ) 
@@ -140,6 +155,7 @@ const MainForm = ({ items, vendors }) => {
             <br />
             <button onClick={() => {redirectToCheckout(item.get("stripeId"))}}>Instant Checkout</button>
             <button onClick={() => {addToCart(item.get("stripeId"), item.get("quantity"))}}>Add to Cart</button>  
+            <button onClick={() => {removeFromCart(item.get("stripeId"))}}>Remove from Cart</button>  
 
             {/* Get the information for the vendor of each item */}
             {/* Vendor: */}
