@@ -9,10 +9,10 @@ body {
     text-align: center;
     color: black;
     padding: 10px;
-    border-radius: 0px;
-    background: #50b968;
-    box-shadow:  -5px 5px 0px #204a2a,
-                 5px -5px 0px #80ffa6;
+    border-radius: 53px;
+    background: #ffffff;
+    box-shadow:  11px 11px 28px #a6a6a6,
+                -11px -11px 28px #ffffff;
   }
   
 h2.Items {
