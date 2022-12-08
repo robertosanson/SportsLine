@@ -144,13 +144,14 @@ const MainForm = ({ items, vendors }) => {
     <div className="container">
       <div className="panel-group">
         <div className="panel panel-default">
+          <div className="contenedor">
           <div key={item.get("name").toString()} className="item">
             {/* get image of the item */}
             <img
               src={window.location.origin + "/pictures/items/" + item.get("picture")}
               alt={item.name}
               className="img-thumbnail"
-              width="100"
+              width="150"
             />
             <br />
             {item.get("name")} - {item.get("sport")} - ${item.get("price")} <br /> 
@@ -183,7 +184,7 @@ const MainForm = ({ items, vendors }) => {
               alt={item.get("vendor").get('name')}
               width="100"
             />
-
+            </div>
           </div>
         </div>
       </div>
