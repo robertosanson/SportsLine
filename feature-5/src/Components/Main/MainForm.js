@@ -1,10 +1,18 @@
 import React from "react";
 import "../../styles.css";
 import { loadStripe } from "@stripe/stripe-js";
+import {useState} from "react";
 
 // function that displays the items that are availble, as well as the
 // Vendors that correspond to each item
 const MainForm = ({ items }) => {
+
+  const [sportFilter, setSportFilter] = useState("All");
+  const [priceFilter, setPriceFilter] = useState(100);
+  const [nameFilter, setNameFilter] = useState(100);
+  const [quantityList, setQuantityList] = useState([]);
+
+  let filters = [sportFilter, priceFilter, nameFilter];
 
   let stripePromise;
   const getStripe = () => {
@@ -31,25 +39,64 @@ const MainForm = ({ items }) => {
     console.log("Stripe checkout error", error);
   };
 
+  const cartCheckout = async(priceIds, quantities) => {
+    let cartItems = []
+    items.forEach((item) => {
+      if (+window.localStorage.getItem(item.get("stripeId")) > 0){
+
+        cartItems.push({
+          price: item.get("stripeId"),
+          quantity: +window.localStorage.getItem(item.get("stripeId"))
+        })
+      }
+    });
+    let checkoutOptions = {
+      lineItems: cartItems,
+      mode: "payment",
+      successUrl: `${window.location.origin}/success`,
+      cancelUrl: `${window.location.origin}/cancel`
+      };
+    const stripe = await getStripe();
+    console.log(cartItems)
+    const { error } = await stripe.redirectToCheckout(checkoutOptions);
+    console.log("Stripe checkout error", error);
+
+  }
+
   // Creating the shopping cart list
   var list_stripe = [];
   var list_quantity = [];
   var total = 0;
-  var storage = total;
 
+  function filterItemsBySports(sportFilter) {
+    filters[0] = sportFilter
+    setSportFilter(sportFilter);
+  }
+
+  function filterItemsByPrice(priceFilter) {
+    filters[1] = priceFilter;
+    setPriceFilter(priceFilter);
+  }
+
+  function filterItemsByName(nameFilter) {
+    filters[2] = nameFilter;
+    setNameFilter(nameFilter);
+  }
 
   const addToCart = async (stripeId, quantity) => {
     let index = 0;
+    let newList = [];
     // Check if the item doesn't exist in the shopping cart and add it to the shopping cart
     // and if it does appear there then add one more to the cart.
     if (!list_stripe.includes(stripeId)) {
       total = +(window.localStorage.getItem(stripeId));
+      newList = quantityList;
+      setQuantityList(newList + 1);
       list_stripe.push(stripeId);
       list_quantity.push(1);
       if (99 > (window.localStorage.getItem(stripeId))){
         total += 1;
         window.localStorage.setItem(stripeId, total);
-        storage = window.localStorage.getItem(stripeId);
       }
       else{
         alert("No more items in stock");
@@ -59,10 +106,11 @@ const MainForm = ({ items }) => {
       total = +(window.localStorage.getItem(stripeId));
       index = list_stripe.indexOf(stripeId);
       if (99 > (window.localStorage.getItem(stripeId))){
-        list_quantity[index] += 1
+        newList = quantityList;
+        setQuantityList(newList + 1);
+        list_quantity[index] += 1;
         total += 1;
         window.localStorage.setItem(stripeId, total);
-        storage = window.localStorage.getItem(stripeId);
       }
       else{
         alert("No more items in stock");
@@ -71,7 +119,9 @@ const MainForm = ({ items }) => {
   } 
 
   //This are the list items that will be presented to the user
-  let listItems = items.map((item) => (
+  let listItems = items.filter(item => (item.get("name").toLowerCase().includes(document.getElementById("name").value.toLowerCase()) ) 
+  && item.get("price") < +document.getElementById("price").value 
+  && (item.get("sport") === document.getElementById("sport").value || document.getElementById("sport").value === "All")).map((item) => (
     
     <div className="container">
       <div className="panel-group">
@@ -86,7 +136,7 @@ const MainForm = ({ items }) => {
             />
             <br />
             {item.get("name")} - {item.get("sport")} - ${item.get("price")} <br /> 
-            In Cart: {window.localStorage.getItem(item.get("stripeId"))}
+            In Cart: {window.localStorage.getItem(item.get("stripeId")) ? window.localStorage.getItem(item.get("stripeId")) : 0}
             <br />
             <button onClick={() => {redirectToCheckout(item.get("stripeId"))}}>Instant Checkout</button>
             <button onClick={() => {addToCart(item.get("stripeId"), item.get("quantity"))}}>Add to Cart</button>  
@@ -126,12 +176,45 @@ const MainForm = ({ items }) => {
 
   return (
     <div>
+
+      <label for="name">Item Name:</label>
+      <input type="text" id="name" name="name" onChange={() => filterItemsByName(document.getElementById("name").value)}></input>
+
+        <label for="sport">Choose a sport: </label>
+        <select
+          name="sport"
+          id="sport"
+          onChange={() =>
+            filterItemsBySports(document.getElementById("sport").value)}
+        >
+          <option value="All">All</option>
+          <option value="Soccer" id="Soccer">Soccer</option>
+          <option value="Basketball" id="Basketball">Basketball</option>
+          <option value="Baseball" id="Baseball">Baseball</option>
+          <option value="Football" id="Football">Football</option>
+        </select>
+        
+
+        <label for="price">Items Under: </label>
+        <select
+          name="price"
+          id="price"
+          onChange={() =>
+            filterItemsByPrice(document.getElementById("price").value)}
+        >
+          <option value="100">$100</option>
+          <option value="50">$50</option>
+          <option value="30">$30</option>
+          <option value="20">$20</option>
+          <option value="10">$10</option>
+        </select>
+
       <hr />
       These are the items that are available:
       <hr />
       <ul>{listItems}</ul>
       <div>
-        <button>Checkout</button>
+        <button onClick={() => cartCheckout(list_stripe, list_quantity)}>Checkout</button>
       </div>
     </div>
   );
