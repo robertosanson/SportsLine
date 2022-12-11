@@ -26,7 +26,7 @@ All notable changes to this project will be documented in this file.
 - Removed the buy button since it was causing a lot of bugs, postponed this feature to the next release in order to get it working perfectly
 
 ##[0.3.0] - 2022-11-09
-###Added
+### Added
 
 - Authentication and protected routes that allow the user to acces the app only if they have created an account
 
@@ -38,13 +38,20 @@ All notable changes to this project will be documented in this file.
 
 - Removed the vendor images in the inventory list. This was due to a bug that we were not able to fix on time
 
-### Changed
 
-- Authentication now works perfectly. The user is able to register, login, and logout.
-- Improved the CSS on the webpage.
+##[0.4.0] - 2022-12-10
 
 ### Added
 - Stripe implementation.
-- Add to cart functionality.
-- Instant Checkout.
+- Add to cart functionality - you can check out multiple items through stripe in one cart
+- Instant Checkout for any item
 - Filters for buying items
+- Bootstrap for styling
+- Added back the images from the vendors, as well as links to their websites
+
+
+### Changed
+- CSS and overall styling of the website were improved
+- Authentication now works perfectly. The user is able to register, login, and logout.
+- If you are unauthorized to access a site, it will redirect you automatically to the login/signup page
+instead of being prompted with a redirect button.
