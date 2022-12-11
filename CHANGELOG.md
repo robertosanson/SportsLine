@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 
 ##[0.2.0] - 2022-10-26
-###Added
+### Added
 
 - We added the basics from feature 4 kickoff
 - Added the vendors data to the database
@@ -38,3 +38,13 @@ All notable changes to this project will be documented in this file.
 
 - Removed the vendor images in the inventory list. This was due to a bug that we were not able to fix on time
 
+### Changed
+
+- Authentication now works perfectly. The user is able to register, login, and logout.
+- Improved the CSS on the webpage.
+
+### Added
+- Stripe implementation.
+- Add to cart functionality.
+- Instant Checkout.
+- Filters for buying items
