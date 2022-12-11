@@ -23,15 +23,10 @@ const AuthRegister = () => {
       alert("You are already logged in");
       navigate("/home");
     }
-    // else{
-    //   alert("You have to login");
-    //   navigate("/auth");
-    // }
   }, [navigate]);
 
   // useEffect that run when changes are made to the state variable flags
   useEffect(() => {
-    // checkUser() ? history.push("/home"): null;
     if (newUser && add) {
       createUser(newUser).then((userCreated) => {
         if (userCreated) {
@@ -41,7 +36,6 @@ const AuthRegister = () => {
           navigate("/home");
           refresh();
         }
-        // TODO: redirect user to main app
         setAdd(false);
       });
     }

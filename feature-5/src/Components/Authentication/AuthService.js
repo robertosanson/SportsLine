@@ -42,16 +42,19 @@ export const loginUser = (currUser) => {
     });
 };
 
+// Checks if the user is signed in
 export const checkUser = () => {
   return Parse.User.current()?.authenticated;
 };
 
+// Logs out the user
 export const logoutUser = () => {
     localStorage.clear();
     refresh();
     return Parse.User.logOut();
 }
 
+// Refreshes the page
 export const refresh = () => {
   window.location.reload(false);
 }

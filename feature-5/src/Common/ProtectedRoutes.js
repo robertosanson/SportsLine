@@ -15,18 +15,6 @@ const ProtectedRoute = ({ element: Component, flag, ...rest }) => {
   else{
     return <Home />;
   }
-  
-  // else {
-  // return (
-  //   <div>
-  //     {flag ? (<Navigate to={rest.path} replace />) : (
-  //       <div>
-  //         <p>Unauthorized!</p> <button onClick={goBackHandler}>Log In</button>
-  //       </div>
-  //     )}
-  //   </div>
-  // );
-  // }
 };
 
 export default ProtectedRoute;

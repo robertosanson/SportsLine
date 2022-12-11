@@ -9,10 +9,14 @@ const Navigation = () => (
   <nav>
     <ul>
       <hr />
+      {/* If the user is signed in there will be a title welcoming the user, but if they are not signed in
+      then there will be a title prompting the user to sign in */}
       {checkUser() ? <label className="welcomeTitle"> Hello, {Parse.User.current()?.get("firstName")} </label> :
       <label className="welcomeTitle"> Welcome, Please Login or SignUp </label>
       }
       <br/>
+      {/* If the user is signed in, there will ba button to log out, but if the user is not signed in
+      then there will be a title that the user could click in order to sign in */}
       {!checkUser() ? 
       <Link to="/auth">Sign Up / Log In</Link> : 
       <button className="logoutButton" onClick={() => {logoutUser()}}> Log out </button>

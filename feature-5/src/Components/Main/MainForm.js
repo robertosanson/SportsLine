@@ -14,6 +14,7 @@ const MainForm = ({ items, vendors }) => {
 
   let filters = [sportFilter, priceFilter, nameFilter];
 
+  // from here down is the stripe implementation in order to be able to check out the items
   let stripePromise;
   const getStripe = () => {
     if (!stripePromise) {
@@ -158,6 +159,7 @@ const MainForm = ({ items, vendors }) => {
             In Cart: {window.localStorage.getItem(item.get("stripeId")) ? window.localStorage.getItem(item.get("stripeId")) : 0}
             <br />
             <br />
+            {/* Bellow are the buttons that on click will do whatever hte functions on top tell them to, basically checkout, add and remove from cart */}
             <button className="inventoryButtons" onClick={() => {redirectToCheckout(item.get("stripeId"))}}>Instant Checkout</button>
             <button className="inventoryButtons" onClick={() => {addToCart(item.get("stripeId"), item.get("quantity"))}}>Add to Cart</button>  
             <button className="inventoryButtons" onClick={() => {removeFromCart(item.get("stripeId"))}}>Remove from Cart</button>  
